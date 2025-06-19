@@ -25,6 +25,8 @@ docs/site/
 # environment.
 # Manifest.toml
 
+*.html
+
 # Specific files/folders
 old/
 others/

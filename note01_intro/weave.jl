@@ -2,6 +2,8 @@
 using Weave
 
 set_chunk_defaults!(:term => true)
+weave("basic_grammar.jl", cache=:off)
+
 weave("basic_grammar.jl", cache=:off, doctype="github", out_path="output/")
 
 # ENV["GKSwstype"]="nul"

@@ -14,8 +14,10 @@
 #' Get current working directory
 pwd()
 
+rand()
+
 #' Change directory with Mac and Linux
-cd("/home/ossifragus/Dropbox/teaching/julia/note01_intro")
+cd("/home/ossifragus/Dropbox/teaching/julia/")
 
 #' For Windows, use this format:
 #+ eval=false
@@ -104,6 +106,10 @@ mat[1:end .∉ 2, :]             # Exclude the second row
 mat[1:end .∉ [[2, 4]], :]      # Exclude the second and the fourth rows
 mat[setdiff(1:end, [2, 4]), :] # Exclude the second and the fourth rows
 
+# α = 1
+# 🍎 = 2
+# αβΓ
+
 #' More on `setdiff`
 setdiff(1:8, [3, 5])
 setdiff([1, 3, "true", 't'], "true")   # 't' will be removed
@@ -113,9 +119,10 @@ setdiff([1, 3, "true", 't'], ["true"]) # "true" will be removed
 #' but dat[1:5, :] create a new matrix.
 dat1 = mat[1:5, 1:2]
 dat2 = view(mat, 1:5, 1:2)
+@views dat3 = mat[1:5, 1:2]
 
-dat1[1,1] = -1; mat
-dat2[1,1] = -1; mat
+dat1[1,1] = 1; mat
+dat2[1,1] = 1; mat
 
 #' ## Arithmetics and simple functions
 x .+ y
@@ -126,6 +133,9 @@ x .* y
 x .^ 2
 2 .^ x
 Int128(2).^x
+
+x = 500
+BigInt(2) ^x
 
 a = ones(2, 3)
 b = collect(1:3)
@@ -154,7 +164,7 @@ a > 10 ? println("hello") : println("Hi")
 #' There are standard programming constructs:
 if false    # if clause requires Bool test
     🍎 = 1
-elseif 1 == 2
+elseif 2 == 2
     🍑 = 2
 else
     💔 = 3
@@ -165,6 +175,7 @@ end        # after this 💔 = 3, and 🍎 and 🍑 are undefined
 α = 0.05
 β = 0.8
 α̂ = 0.3
+β̂ = 8
 
 #' See this link for a list of tab completion of LaTeX style input:
 #' https://docs.julialang.org/en/v1/manual/unicode-input/
@@ -173,8 +184,7 @@ end        # after this 💔 = 3, and 🍎 and 🍑 are undefined
 x = 1:10
 s = 0
 for i in 1:length(x)
-    global
-    s += x[i]
+    global s += x[i]
 end
 s
 
@@ -200,6 +210,7 @@ end              # x is defined in the inner scope of the loop
 ρ, p = 0.6, 7
 [ρ^abs(i-j) for i in 1:p, j in 1:p]
 #' Of course, there are other ways to create arrays
+
 ρ.^abs.((1:p) .- (1:p)')
 
 #' ## Self-defined functions
@@ -213,6 +224,8 @@ end
 fsum(x)
 
 f(x, y = 10) = x .+ y # one line definition of a new function
+
+g(x) = x.^3
 
 function f(x, y=10) # the same as above
     x .+ y
