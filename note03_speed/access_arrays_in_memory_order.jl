@@ -13,11 +13,6 @@ function mysum(M)
     return s
 end
 
-n = 10^4
-M = rand(n, n);
-
-@b mysum($M)
-
 function mysum2(M)
     s = 0.0
     n = size(M)[1]
@@ -27,4 +22,8 @@ function mysum2(M)
     return s
 end
 
-@b mysum2($M)
+n = 10^4
+M = rand(n, n);
+
+@b mysum(M)
+@b mysum2(M)
