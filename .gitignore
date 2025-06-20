@@ -26,6 +26,7 @@ docs/site/
 # Manifest.toml
 
 *.html
+output
 
 # Specific files/folders
 old/
