@@ -15,9 +15,9 @@ includet(joinpath(model, "estimators.jl"))
 # includet("linear/gendat.jl")
 # includet("linear/estimators.jl")
 
-savepath = joinpath.(model, "output", ["", "tmp"])
-fn = joinpath(savepath[1], "$(model)-case$(case)")
-!all(ispath.(savepath)) && mkpath.(savepath)
+savepath = joinpath(model, "output")
+fn = joinpath(savepath, "$(model)-case$(case)")
+!all(ispath(savepath)) && mkpath(savepath)
 
 N = 10^5
 θt = [0.5, 0.5, -0.5, 0.5, -0.5]
