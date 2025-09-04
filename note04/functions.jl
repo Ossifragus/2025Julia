@@ -71,8 +71,14 @@ function calPI(X, Y, n0, n; criterion="optA")
     return π
 end
 
-function iboss(X, Y, n)
-    @views Z = X[:, 2:end]
+function iboss(X, Y, n, n0; model="linear")
+    if model == "linear"
+        @views Z = X[:, 2:end]
+    else
+        par_poi, _, _, _ = getpilot(X, Y, n0)
+        p = s.(X * par_poi)
+        Z = sqrt.(h.(p)) .* X
+    end
     idx_iboss = getidx_iboss(Z, n)
     x_iboss = X[idx_iboss, :]
     y_iboss = Y[idx_iboss]
@@ -103,7 +109,7 @@ function simu(θt, case, N, rpt, nss, n0, l_mtds)
             Θ_optA[:, rr, idn] .= osmac(X, Y, n0, n)
             Θ_optL[:, rr, idn] .= osmac(X, Y, n0, n; criterion="optL")
             Θ_lev[:, rr, idn] .= osmac(X, Y, n0, n; criterion="lev")
-            Θ_iboss[:, rr, idn] .= iboss(X, Y, n)
+            Θ_iboss[:, rr, idn] .= iboss(X, Y, n, n0; model=model)
         end
         spg && next!(pg)
     end
