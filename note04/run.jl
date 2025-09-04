@@ -12,8 +12,6 @@ includet("functions.jl")
 includet("getidx_iboss.jl")
 includet(joinpath(model, "gendat.jl"))
 includet(joinpath(model, "estimators.jl"))
-# includet("linear/gendat.jl")
-# includet("linear/estimators.jl")
 
 savepath = joinpath(model, "output")
 fn = joinpath(savepath, "$(model)-case$(case)")
